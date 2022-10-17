@@ -4,14 +4,21 @@ import { Statistics } from './Feedback/Statistics/Statistics';
 import { Section } from './Feedback/Section/Section';
 
 export const App = () => {
-  const [options, setOptions] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const options = { good: good, neutral: neutral, bad: bad };
 
   const handleClick = option => {
-    console.log(options[option]);
-    setOptions(prevOptions => ({
-      ...prevOptions,
-      [option]: prevOptions[option] + 1,
-    }));
+    if (option === 'good') {
+      setGood(prevState => prevState + 1);
+    }
+    if (option === 'neutral') {
+      setNeutral(prevState => prevState + 1);
+    }
+    if (option === 'bad') {
+      setBad(prevState => prevState + 1);
+    }
   };
 
   const countTotalFeedback = () => {
